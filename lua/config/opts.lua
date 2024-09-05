@@ -1,0 +1,16 @@
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.expandtab = false
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.scrolloff = 10
+vim.opt.smartindent = true
+vim.opt.autoindent = true
+vim.opt.wrap = false
+vim.opt.cursorline = true
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+vim.opt.ignorecase = true
+vim.opt.background = "dark"
+vim.opt.clipboard = "unnamedplus"
+vim.opt.termguicolors = true
