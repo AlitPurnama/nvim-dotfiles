@@ -10,7 +10,6 @@ return {
 					nls.builtins.formatting.gofumpt,
 					nls.builtins.formatting.goimports_reviser,
 					nls.builtins.formatting.golines,
-					nls.builtins.formatting.beautysh,
 				},
 				on_attach = function(client, bufnr)
 					if client.supports_method("textDocument/formatting") then
