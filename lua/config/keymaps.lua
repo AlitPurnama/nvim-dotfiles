@@ -6,17 +6,20 @@ local ui = require("harpoon.ui")
 --local actions = require("telescope.actions")
 
 wk.add({
-	{ "<leader>f", group = "file" }, -- group
-	{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File", mode = "n" },
-	{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep", mode = "n" },
+	{ "<leader>f",  group = "file" }, -- group
+	{ "<leader>ff", "<cmd>Telescope find_files<cr>",     desc = "Find File",                    mode = "n" },
+	{ "<leader>fg", "<cmd>Telescope live_grep<cr>",      desc = "Live Grep",                    mode = "n" },
 	-- BUFFER
-	{ "<leader>b", group = "buffer" },
-	{ "<leader>bx", "<cmd>BufferClose<cr>", desc = "Close Buffer", mode = "n" },
-	{ "<leader>bf", "<cmd>Telescope buffers<cr>", desc = "Find Buffers", mode = "n" },
+	{ "<leader>b",  group = "buffer" },
+	{ "<leader>bx", "<cmd>BufferClose<cr>",              desc = "Close Buffer",                 mode = "n" },
+	{ "<leader>bf", "<cmd>Telescope buffers<cr>",        desc = "Find Buffers",                 mode = "n" },
+	{ "<leader>bh", "<cmd>BufferCloseBufferLeft<cr>",    desc = "Close Buffer To The Left",     mode = "n" },
+	{ "<leader>bl", "<cmd>BufferCloseBufferRight<cr>",   desc = "Close Buffer To The Right" },
+	{ "<leader>bc", "<cmd>BufferCloseAllButCurrent<cr>", desc = "Close All Buffer But Current", mode = "n" },
 
 	-- HARPOON
-	{ "<leader>a", mark.add_file, desc = "Mark file", mode = "n" },
-	{ "<leader>h", ui.toggle_quick_menu, desc = "Toggle Harpoon Menu", mode = "n" },
+	{ "<leader>a",  mark.add_file,                       desc = "Mark file",                    mode = "n" },
+	{ "<leader>h",  ui.toggle_quick_menu,                desc = "Toggle Harpoon Menu",          mode = "n" },
 	{
 		"<leader>1",
 		function()
@@ -36,7 +39,7 @@ wk.add({
 		hidden = true,
 	},
 	{
-		"<leader>4",
+		"<leader>3",
 		function()
 			ui.nav_file(3)
 		end,
@@ -71,24 +74,28 @@ wk.add({
 		mode = "n",
 		hidden = true,
 	},
-	{ "<leader>g", group = "git" },
+	{ "<leader>g",  group = "git" },
 
-	{ "<leader>w", group = "windows" },
+	{ "<leader>w",  group = "windows" },
 
 	-- Split resizing
-	{ "<leader>wH", "<C-w><", desc = "Resize Left", mode = "n" },
-	{ "<leader>wJ", "<C-w>+", desc = "Resize Down", mode = "n" },
-	{ "<leader>wK", "<C-w>-", desc = "Resize Up", mode = "n" },
-	{ "<leader>wL", "<C-w>>", desc = "Resize Right", mode = "n" },
+	{ "<leader>wH", "<C-w><",           desc = "Resize Left",      mode = "n" },
+	{ "<leader>wJ", "<C-w>+",           desc = "Resize Down",      mode = "n" },
+	{ "<leader>wK", "<C-w>-",           desc = "Resize Up",        mode = "n" },
+	{ "<leader>wL", "<C-w>>",           desc = "Resize Right",     mode = "n" },
 
-	{ "ss", ":split<CR>", desc = "Horizontal Split", mode = "n", hidden = true },
-	{ "sv", ":vsplit<CR>", desc = "Vertical Split", mode = "n", hidden = true },
+	{ "ss",         ":split<CR>",       desc = "Horizontal Split", mode = "n", hidden = true },
+	{ "sv",         ":vsplit<CR>",      desc = "Vertical Split",   mode = "n", hidden = true },
 
 	--
-	{ "<leader>t", ":ToggleTerm<CR>", desc = "Toggle term", mode = "n" },
+	{ "<leader>t",  ":ToggleTerm<CR>",  desc = "Toggle term",      mode = "n" },
+
+	{ "<leader>c",  group = "Codesnap", mode = "x" },
 })
 
-vim.api.nvim_set_keymap("n", "<C-n>", ":Neotree toggle left<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-d>", ":DBUIToggle<CR>", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", "<C-n>", ":Neotree toggle right<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<tab>", ":BufferNext<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<S-tab>", ":BufferPrevious<CR>", { noremap = true, silent = true })
 
@@ -97,3 +104,5 @@ vim.api.nvim_set_keymap("n", "<C-h>", "<C-w>h", { noremap = true, silent = true 
 vim.api.nvim_set_keymap("n", "<C-j>", "<C-w>j", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-k>", "<C-w>k", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-l>", "<C-w>l", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap("n", ";", ":", { noremap = true })
