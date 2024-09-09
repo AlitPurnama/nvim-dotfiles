@@ -5,29 +5,41 @@ return {
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
 		},
-		opts = {
-			ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "go" },
-			highlight = {
-				enable = true,
-			},
-			auto_install = true,
-			indent = {
-				enable = true,
-			},
-			textobjects = {
-				select = {
+		config = function()
+			require("nvim-treesitter.configs").setup({
+				ensure_installed = {
+					"c",
+					"lua",
+					"vim",
+					"vimdoc",
+					"query",
+					"markdown",
+					"markdown_inline",
+					"go",
+					"norg",
+				},
+				highlight = {
 					enable = true,
-					lookahead = true,
-					keymaps = {
-						-- You can define your own keymaps
-						["af"] = "@function.outer",
-						["if"] = "@function.inner",
-						["ac"] = "@class.outer",
-						["ic"] = "@class.inner",
+				},
+				auto_install = true,
+				indent = {
+					enable = true,
+				},
+				textobjects = {
+					select = {
+						enable = true,
+						lookahead = true,
+						keymaps = {
+							-- You can define your own keymaps
+							["af"] = "@function.outer",
+							["if"] = "@function.inner",
+							["ac"] = "@class.outer",
+							["ic"] = "@class.inner",
+						},
 					},
 				},
-			},
-		},
+			})
+		end,
 	},
 	{
 		"hrsh7th/nvim-cmp",
@@ -38,6 +50,7 @@ return {
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
 			"saadparwaiz1/cmp_luasnip",
+			"onsails/lspkind.nvim",
 		},
 		config = function()
 			local cmp = require("cmp")
@@ -58,9 +71,19 @@ return {
 					["<C-e>"] = cmp.mapping.abort(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 				}),
+				formatting = {
+					format = require("lspkind").cmp_format({
+						mode = "symbol",
+						maxwidth = 50,
+						ellipsis_char = "...",
+						symbol_map = { Codeium = "" },
+					}),
+				},
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" }, -- For luasnip users.
+					{ name = "neorg" },
+					{ name = "codeium" },
 				}, {
 					{ name = "buffer" },
 					{ name = "path" },
@@ -73,10 +96,6 @@ return {
 		config = function()
 			require("lspsaga").setup({})
 		end,
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter", -- optional
-			"nvim-tree/nvim-web-devicons", -- optional
-		},
 	},
 	{
 		"L3MON4D3/LuaSnip",
